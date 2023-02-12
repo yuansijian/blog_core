@@ -2,53 +2,99 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>client</module>
+        <module>admin</module>
+    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.6.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>2.6.3</version>
     </parent>
     <groupId>com.ysij</groupId>
     <artifactId>blog</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>blog</name>
     <description>blog</description>
+    <packaging>pom</packaging>
+
     <properties>
-        <java.version>17</java.version>
+        <!-- Java 版本-->
+        <java.version>1.8</java.version>
+
+        <!--字符集编码-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!--spring-cloud版本-->
+        <spring.cloud-version>2021.0.1</spring.cloud-version>
+        <!--spring-cloud-alibaba版本-->
+        <spring.cloud.alibaba-version>2021.0.1.0</spring.cloud.alibaba-version>
+
+        <mysql.version>8.0.13</mysql.version>
+        <druid.version>1.2.9</druid.version>
+        <junit.version>5.7.1</junit.version>
+        <lombok.version>1.18.22</lombok.version>
+        <log4j.vsrsion>2.17.1</log4j.vsrsion>
+        <nacos.version>1.4.2</nacos.version>
+        <loadbalancer.version>3.1.1</loadbalancer.version>
+        <springboot.version>2.6.3</springboot.version>
+        <mybatis-plus.version>3.3.1</mybatis-plus.version>
+        <mysql.version>5.1.46</mysql.version>
+        <swagger-version>2.9.2</swagger-version>
+        <swaggerui-version>2.9.2</swaggerui-version>
+        <swagger-bootstrap-ui.version>1.9.6</swagger-bootstrap-ui.version>
+        <swagger-annotations.version>1.5.23</swagger-annotations.version>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!--spring-cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--spring-cloud-alibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring.cloud.alibaba-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Nacos依赖，服务注册运行必备 start-->
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <!-- Nacos依赖，服务注册运行必备 end-->
 
-    <build>
-        <plugins>
-            <plugin>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+                <artifactId>spring-boot</artifactId>
+                <version>${springboot.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-loadbalancer</artifactId>
+                <version>${loadbalancer.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

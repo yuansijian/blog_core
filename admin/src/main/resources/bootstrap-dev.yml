@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    nacos:
+      # server-addr: 172.18.8.94:8848
+      # 蓝鲸平台nacos ip:192.168.210.25
+      server-addr: localhost:8848
+      config:
+        username: nacos
+        password: nacos
+        file-extension: yml
+        namespace: e9e36db9-d9d0-486d-b8fe-13ebeb4502aa
+        shared-configs[0]:
+          data-id: bpaf.yml
+          refresh: true
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: e9e36db9-d9d0-486d-b8fe-13ebeb4502aa

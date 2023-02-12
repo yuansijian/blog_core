@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      config:
+        username: nacos
+        password: nacos
+        file-extension: yml
+        namespace: blog
+        group: DEFAULT_GROUP
+      discovery:
+        username: nacos
+        password: nacos
+        namespace: blog
+        group: DEFAULT_GROUP
